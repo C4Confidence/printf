@@ -3,7 +3,7 @@
 /**
  * _0-printf - print function
  * @format: format.
- * by Confidence Aigbedion and Hicham daoudi
+ * by Confidence Aigbedion and Hicham Daoudi
  * Return: Printed Characters.
  */
 int _printf(const char *format, ...)

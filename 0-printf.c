@@ -1,55 +1,65 @@
 #include "main.h"
 
+void print_buffer(char buffer[], int *buff_ind);
+
+/**
+ * _0-printf - print function
+ * @format: format.
+ * by Confidence Aigbedion and Hicham Daoudi
+ * Return: Printed Characters.
+ */
 int _printf(const char *format, ...)
 {
-	int cha_print = 0;
-	va_list list_of_args;
+	int i, printed = 0, cha_print = 0;
+	int flags, width, precision, size, buff_ind = 0;
+	va_list list;
+	char buffer[BUFF_SIZE];
 
 	if (format == NULL)
-
 		return (-1);
 
-	va_start(list_of_args, format);
-	while (*format)
-	{
-		if (*format != '%')
-		{
-			write(1, format, 1);
+	va_start(list, format);
 
-		cha_print++;
+	for (i = 0; format && format [i] != '\0'; i++)
+	{
+		if (format[i] != '%')
+		{
+			buffer [buff_ind++] = format[i];
+			if (buff_ind == BUFF_SIZE)
+				print_buffer(buffer, &buff_ind);
+			/* write(q, &format[i], 1);*/
+			cha_print++;
 		}
 		else
 		{
-			format++;
-
-		if (*format == '\0')
-			break;
-		if (*format == '%')
-		{
-			write(1, format, 1);
-			cha_print++;
+			print_buffer(buffer, &buff_ind);
+			flags = get_flags(format, &i);
+			width = get_width(format, &i, list);
+			precision = get_precision(format, &i, list);
+			size = get_size(format, &i);
+			++i;
+			printed = handle_print(format, &i, list, buffer,
+					flags, width, precision, size);
+			if (printed == -1)
+				return (-1);
+			cha_print += printed;
 		}
-		else if (*format == 'c')
-		{
-			char c = va_arg(list_of_args, int);
-
-			write(1, &c, 1);
-
-			cha_print++;
-		}
-		else if (*format == 's')
-		{
-			char *str = va_arg(list_of_args, char*);
-			int str_len = 0;
-
-			while (str[str_len] != '\0')
-				str_len++;
-			write(1, str, str_len);
-		cha_print += str_len;
-		}
-		}
-		format++;
 	}
-	va_end(list_of_args);
-		return (cha_print);
+	print_buffer(buffer, &buff_ind);
+
+	va_end(list);
+
+	return (cha_print);
+}
+
+/**
+ * print_buffer - prints the contents of the buffer if it exist
+ * @buffer: Array of chars
+ * @buff_ind: Index at which to add next char, represents the lenght.
+ */
+void print_buffer(char buffer[], int *buff_ind)
+{
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
+	*buff_ind = 0;
 }

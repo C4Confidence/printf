@@ -20,6 +20,8 @@ int print_binary(va_list args);
 
 void _putchar(char c);
 int _numlen(long int num);
+int binary(int num);
+int octal(int num);
 int _pow(int num, int power);
 
 #endif

@@ -15,55 +15,43 @@ int _printf(const char *format, ...)
 	{
 		return (-1);
 	}
-
 	va_start(list_of_args, format);
-
 	cha_print = format_string(format, args);
-
 	va_end(args);
-
 	return (cha_print);
 }
-
-
 /**
- * format_string - a function for processing the string
+ * _printf - a function for processing the string
  * @format: format list
- * @args: number of arguments
  * Return: Number of characters
  */
 
-int format_string(const char *format, va_list args)
+int _printf(const char *format, ...)
 {
-	int i;
-	int charnum = 0;
+	int cha_print = 0;
+	va_list list_of_args;
 
-	for (i = 0; format && format[i] != '\0'; i++)
+	va_start(list_of_args, format);
+
+	while (*format)
 	{
-		if (format[i] != '%')
+		if (*format != '%')
 		{
-			_putchar(format[i]);
-			charnum++;
+			write(1, format, 1);
+			cha_print++;
 		}
-		else if (format[i] == '%')
+		else
 		{
-			i++;
-			if (format[i] == ' ' || format[i] == '\0')
+			format++;
+			if (*format == '\0')
+				break;
+			if (*format == '%')
 			{
-				va_end(args);
-				return (-1);
+				write(1, format, 1);
+				cha_print++;
 			}
-			else if (format[i] == '%')
-			{
-				charnum += handle_percent();
-			}
-			else
-			{
-				charnum += specifier_handler(format[i], format, &i,
-						args);
-			}
-		}
+		format++;
 	}
-
-	return (charnum);
+	va_end(list_of_args);
+	return (cha_print);
 }

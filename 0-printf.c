@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _0-printf - print function
+ * _printf - print function
  * @format: format.
  * by Confidence Aigbedion and Hicham Daoudi
  * Return: Printed Characters.
@@ -12,47 +12,58 @@ int _printf(const char *format, ...)
 	va_list list_of_args;
 
 	if (format == NULL)
+	{
 		return (-1);
+	}
 
 	va_start(list_of_args, format);
 
-	while (*format)
-	{
-		if (*format != '%')
-		{
-			write(1, format, 1);
-			cha_print++;
-		}
-		else
-		{
-			format++;
-			if (*format == '\0')
-				break;
-			if (*format == '%')
-			{
-				write(1, format, 1);
-				cha_print++;
-			}
-			else if (*format == 'c')
-			{
-				char c = va_arg(list_of_args, int);
-				write(1, &c, 1);
+	cha_print = format_string(format, args);
 
-				cha_print++;
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(list_of_args, char*);
-				int str_len = 0;
-				while (str[str_len] != '\0')
+	va_end(args);
 
-					str_len++;
-				write(1, str, str_len);
-				cha_print += str_len;
-			}
-		}
-		format++;
-	}
-	va_end(list_of_args);
 	return (cha_print);
+}
+
+
+/**
+ * format_string - a function for processing the string
+ * @format: format list
+ * @args: number of arguments
+ * Return: Number of characters
+ */
+
+int format_string(const char *format, va_list args)
+{
+	int i;
+	int charnum = 0;
+
+	for (i = 0; format && format[i] != '\0'; i++)
+	{
+		if (format[i] != '%')
+		{
+			_putchar(format[i]);
+			charnum++;
+		}
+		else if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == ' ' || format[i] == '\0')
+			{
+				va_end(args);
+				return (-1);
+			}
+			else if (format[i] == '%')
+			{
+				charnum += handle_percent();
+			}
+			else
+			{
+				charnum += specifier_handler(format[i], format, &i,
+						args);
+			}
+		}
+	}
+
+	return (charnum);
 }

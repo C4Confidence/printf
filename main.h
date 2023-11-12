@@ -4,6 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 /*
  * struct format - converter for printf
@@ -35,6 +37,31 @@ struct fmt
 		char fmt;
 			int (*fn)(va_list, char[], int, int, int, int);
 };
+
+
+
+int _printf(const char *format, ...);
+int format_string(const char *format, va_list args);
+int specifier_handler(char specifier, const char *format, int *i
+		va_list args);
+
+int print_chr(va_list args);
+int print_int(va_list args);
+int print_str(va_list args);
+int handle_percent(void);
+int print_binary(va_list args);
+
+void _putchar(char c);
+int _numlen(long int num);
+int _pow(int num, int power);
+
+
+
+
+
+
+
+
 
 
 /**

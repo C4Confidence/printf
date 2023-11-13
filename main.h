@@ -8,5 +8,6 @@
 int _printf(const char *format, ...);
 int print_percent(void);
 int print_char(char c);
+void print_string(char *str, int *count);
 
 #endif

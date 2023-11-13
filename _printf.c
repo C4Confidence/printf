@@ -3,7 +3,7 @@
 /**
  * _printf - Prints characters
  * A group project by Aigbedion Confidence and Hicham Daoudi
- * 
+ *
  * Return: Printed Characters c s %
 */
 
@@ -30,3 +30,8 @@ int _printf(const char *format, ...)
 			else if (format[i] == 's')
 				print_string(va_arg(arg_list, char *), &count);
 		}
+		i++;
+	}
+	va_end(arg_list);
+	return (count);
+}

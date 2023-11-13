@@ -28,8 +28,8 @@ int print_char(char c)
 
 /**
  * print_string - Prints a string
- *
- *
+ * @str: 
+ * 
  * Return: Number of chars printed
  */
 

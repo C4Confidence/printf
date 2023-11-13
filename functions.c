@@ -1,6 +1,9 @@
 #include "main.h"
+
 /**
- * print_percent - Prints a percentage sign
+ * print_percent - Prints a percent sign
+ * 
+ * Return: Number of chars printed
  */
 
 int print_percent(void)

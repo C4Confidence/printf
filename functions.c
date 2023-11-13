@@ -1,6 +1,5 @@
 #include "main.h"
 /**
- * print_char - Prints a character
  * print_percent - Prints a percentage sign
  */
 

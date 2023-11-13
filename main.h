@@ -6,7 +6,7 @@
 #include <string.h>
 
 int _printf(const char *format, ...);
-int binary (int num);
+int print_percent(void);
 int octal(int num);
 
 #endif

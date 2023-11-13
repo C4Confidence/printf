@@ -2,7 +2,6 @@
 
 /**
  * print_percent - Prints a percent sign
- *
  * Return: Number of chars printed
  */
 
@@ -16,7 +15,6 @@ int print_percent(void)
 /**
  * print_char - Prints a charar
  * @c: character
- *
  * Return: Number of chars printed
  */
 int print_char(char c)

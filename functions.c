@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_char - Prints a character
- * print_percent - Prints a percentage % sign  
+ * print_percent - Prints a percentage % sign
  */
 
 int print_percent(void)

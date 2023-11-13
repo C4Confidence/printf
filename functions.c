@@ -1,5 +1,8 @@
 #include "main.h"
-
+/**
+ * print_char - Prints a char
+ * 
+ */
 
 int print_percent(void)
 {

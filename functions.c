@@ -2,7 +2,7 @@
 
 /**
  * print_percent - Prints a percent sign
- * 
+ *
  * Return: Number of chars printed
  */
 
@@ -12,11 +12,26 @@ int print_percent(void)
 	return (1);
 }
 
+
+/**
+ * print_char - Prints a charar
+ * @c: character
+ *
+ * Return: Number of chars printed
+ */
 int print_char(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
+
+
+/** 
+ * print_string - Prints a string
+ * 
+ * 
+ * Return: Number of chars printed
+ */
 
 void print_string(char *str, int *count)
 {

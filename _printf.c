@@ -3,7 +3,7 @@
 /**
  * _printf - Prints characters
  * A group project by Aigbedion Confidence and Hicham Daoudi
- *
+ * @format: format.
  * Return: Printed Characters c s %
 */
 

@@ -8,6 +8,5 @@
 int _printf(const char *format, ...);
 int print_percent(void);
 int print_char(char c);
-int octal(int num);
 
 #endif

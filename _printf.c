@@ -8,3 +8,7 @@
 */
 
 int _printf(const char *format, ...);
+{
+    int i;
+    int count;
+    va_list arg_list;

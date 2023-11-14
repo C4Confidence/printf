@@ -1,13 +1,11 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
 
+#include <unistd.h>
+#include <stdarg.h>
+
+int write_char(char c);
+int write_str(char *str);
 int _printf(const char *format, ...);
-int print_percent(void);
-int print_char(char c);
-int print_string(char *str);
 
 #endif

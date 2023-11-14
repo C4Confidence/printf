@@ -31,7 +31,7 @@ int print_char(char c)
  * Return: Number of chars printed
  */
 
-void print_string(char *str, int *count)
+int print_string(char *str)
 {
 	int i;
 
@@ -39,9 +39,7 @@ void print_string(char *str, int *count)
 	if (!str)
 		str = "(null)";
 	while (str[i])
-	{
 		i++;
-		*count += 1;
-	}
 	write(1, str, i);
+	return (i);
 }

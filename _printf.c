@@ -23,11 +23,13 @@ int _printf(const char *format, ...)
 		else if (format[i] == '%')
 		{
 			i++;
+			while (format[i] == ' ')
+				i++;
 			if (format[i] == 'c')
 				count += print_char(va_arg(arg_list, int));
 			else if (format[i] == 's')
 				print_string(va_arg(arg_list, char *), &count);
-			else
+			else if (format[i]) 	
 				count += print_char(format[i]);
 		}
 		if (format[i])

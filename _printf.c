@@ -1,35 +1,6 @@
 #include "main.h"
 
 /**
- * write_char - Prints a character
- * @c: character
- * Return: Number of chars printed
- */
-int write_char(char c)
-{
-	return (write(1, &c, 1));
-}
-
-
-/**
- * write_str - Prints a string
- * @str: str
- * Return: Number of chars printed
- */
-
-int write_str(char *str)
-{
-	int len = 0;
-
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-	return (write(1, str, len));
-}
-
-
-/**
  * _printf - Prints characters
  * A group project by Aigbedion Confidence and Hicham Daoudi
  * @format: format.
@@ -38,43 +9,29 @@ int write_str(char *str)
 
 int _printf(const char *format, ...)
 {
-	int count = 0;
+	int i;
+	int count;
+	va_list arg_list;
 
-	va_list args;
-
-	va_start(args, format);
-
-	while (*format != '\0')
+	i = 0;
+	count = 0;
+	va_start(arg_list, format);
+	while (format[i])
 	{
-		if (*format == '%')
+		if (format[i] != '%')
+			count += print_char(format[i]);
+		else if (format[i] == '%')
 		{
-			format++;
-			switch (*format)
-			{
-			case 'c': {
-					char ch = va_arg(args, int);
-
-					count += write_char(ch);
-					break;
-				}
-				case 's': {
-					char *str = va_arg(args, char*);
-
-					count += write_str(str);
-					break;
-				}
-				case '%':
-					count += write_char('%');
-					break;
-				default:
-					break;
-			}
-		} else
-		{
-			count += write_char(*format);
+			i++;
+			if (format[i] == 'c')
+				count += print_char(va_arg(arg_list, int));
+			else if (format[i] == '%')
+				count += print_percent();
+			else if (format[i] == 's')
+				print_string(va_arg(arg_list, char *), &count);
 		}
-		format++;
+		i++;
 	}
-	va_end(args);
+	va_end(arg_list);
 	return (count);
 }

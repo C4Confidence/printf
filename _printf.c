@@ -25,12 +25,25 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == 'c')
 				count += print_char(va_arg(arg_list, int));
-			else if (format[i] == '%')
-				count += print_percent();
 			else if (format[i] == 's')
 				print_string(va_arg(arg_list, char *), &count);
+			else if (format[i] == 'd' || format[i] == 'i')
+				print_numbers(va_arg(arg_list, int), &count);
+			else if (format[i] == 'b')
+				print_binary(va_arg(arg_list, unsigned int), &count);
+			else if (format[i] == 'X')
+				print_hex_upper(va_arg(arg_list, unsigned int), &count);
+			else if (format[i] == 'x')
+				print_hex_lower(va_arg(arg_list, unsigned int), &count);
+			else if (format[i] == 'u')
+				print_dec(va_arg(arg_list, unsigned int), &count);
+			else if (format[i] == 'o')
+				print_octal(va_arg(arg_list, unsigned int), &count);
+			else if (format[i])
+				count += print_char(format[i]);
 		}
-		i++;
+		if (format[i])
+			i++;
 	}
 	va_end(arg_list);
 	return (count);

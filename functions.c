@@ -27,7 +27,6 @@ int print_char(char c)
 /**
  * print_string - Prints a string
  * @str: str
- * @count: counts
  * Return: Number of chars printed
  */
 

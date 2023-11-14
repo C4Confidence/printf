@@ -9,3 +9,4 @@ int write_str(char *str);
 int _printf(const char *format, ...);
 
 #endif
+

@@ -1,18 +1,6 @@
 #include "main.h"
 
 /**
- * print_percent - Prints a percent sign
- * Return: Number of chars printed
- */
-
-int print_percent(void)
-{
-	write(1, "%%", 1);
-	return (1);
-}
-
-
-/**
  * print_char - Prints a charar
  * @c: character
  * Return: Number of chars printed
@@ -22,7 +10,6 @@ int print_char(char c)
 	write(1, &c, 1);
 	return (1);
 }
-
 
 /**
  * print_string - Prints a string
@@ -44,4 +31,15 @@ void print_string(char *str, int *count)
 		*count += 1;
 	}
 	write(1, str, i);
+}
+
+/**
+ * print_percent - Prints a percent sign
+ * Return: Number of chars printed
+ */
+
+int print_percent(void)
+{
+	write(1, "%%", 1);
+	return (1);
 }

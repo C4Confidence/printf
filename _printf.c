@@ -16,6 +16,10 @@ int _printf(const char *format, ...)
 	i = 0;
 	count = 0;
 	va_start(arg_list, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -39,6 +43,10 @@ int _printf(const char *format, ...)
 				print_dec(va_arg(arg_list, unsigned int), &count);
 			else if (format[i] == 'o')
 				print_octal(va_arg(arg_list, unsigned int), &count);
+			else if (format[i] == 'S')
+				write_string(va_arg(arg_list, char *), &count);
+			else if (format[i] == 'p')
+				write_adr(va_arg(arg_list, unsigned long), &count);
 			else if (format[i])
 				count += print_char(format[i]);
 		}

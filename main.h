@@ -15,5 +15,7 @@ void	print_hex_upper(unsigned int nb, int *count);
 void	print_hex_lower(unsigned int nb, int *count);
 void	print_dec(unsigned int nb, int *count);
 void    print_octal(unsigned int num, int *count);
+void    write_string(const char *str, int *count);
+void	write_adr(unsigned long p, int *count);
 
 #endif
